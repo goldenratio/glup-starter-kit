@@ -9,8 +9,8 @@
     "gulp-clean": "~0.3.2",
     "gulp-concat": "~2.6.0",
     "event-stream": "~3.3.3",
-    "jshint": "~2.9.2",
-    "gulp-jshint": "~2.0.1"
+    "gulp-jshint": "~2.0.1",
+    "gulp-sourcemaps": "~1.6.0"
   },
   "scripts": {
     "build": "gulp"
