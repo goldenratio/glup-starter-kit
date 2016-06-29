@@ -1,0 +1,27 @@
+{
+  "name": "gulp-starter-kit",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "~3.9.1",
+    "gulp-clean": "~0.3.2",
+    "gulp-concat": "~2.6.0",
+    "event-stream": "~3.3.3",
+    "jshint": "~2.9.2",
+    "gulp-jshint": "~2.0.1"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goldenratio/gulp-starter-kit.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/goldenratio/gulp-starter-kit/issues"
+  }
+}

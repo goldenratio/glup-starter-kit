@@ -1,0 +1,15 @@
+*
+{
+    padding: 0;
+    margin: 0;
+
+    border-style:none;
+}
+
+body
+{
+    background-color: #fff;
+    font-family: Roboto, Helvetica, 'Helvetica Neue', Verdana, Arial, serif;
+    font-size: 13px;
+    color: #000;
+}
