@@ -9,13 +9,13 @@ class Main
     init()
     {
         var button = document.getElementById("simple_button-js");
-        button.addEventListener("click", this.onButtonClick);
+        button.addEventListener("click", (event)=>{
+            alert("Clicked");
+        });
     }
 
-    onButtonClick (event)
-    {
-        alert("Clicked!");
-    }
+
+
 
 }
 
