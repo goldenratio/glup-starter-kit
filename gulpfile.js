@@ -12,7 +12,7 @@ const RES_DIR = "res";
 
 gulp.task("default", ["package"]);
 
-gulp.task("package", ["clean", "concat-and-validate-js", "copy-res-and-bin"]);
+gulp.task("package", ["clean", "concat-and-validate-js"]);
 
 
 gulp.task("concat-and-validate-js", ["clean"], function() {
@@ -32,7 +32,8 @@ gulp.task("concat-and-validate-js", ["clean"], function() {
                     .pipe(concat(destinationJSFileName))
                     .pipe(jshint('.jshintrc'))
                     .pipe(jshint.reporter('default'))
-                    .pipe(gulp.dest(BIN_DIR));
+                    .pipe(gulp.dest(BIN_DIR))
+                    .pipe(gulp.start("copy-res-and-bin"));
             }
             else
             {
