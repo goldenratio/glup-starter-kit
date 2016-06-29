@@ -12,4 +12,10 @@ body
     font-family: Roboto, Helvetica, 'Helvetica Neue', Verdana, Arial, serif;
     font-size: 13px;
     color: #000;
+    margin: 20px;
+}
+
+button
+{
+    padding: 20px;
 }

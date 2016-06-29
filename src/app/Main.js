@@ -3,13 +3,18 @@ class Main
     constructor()
     {
         console.log("hello");
-        init();
+        this.init();
     }
 
     init()
     {
-        /*var button = document.getElementById("simple_button-js");
-        button.addEventListener("click", onButtonClick);*/
+        var button = document.getElementById("simple_button-js");
+        button.addEventListener("click", this.onButtonClick);
+    }
+
+    onButtonClick (event)
+    {
+        alert("Clicked!");
     }
 
 }
