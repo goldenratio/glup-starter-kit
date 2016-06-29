@@ -12,7 +12,7 @@ const RES_DIR = "res";
 
 gulp.task("default", ["package"]);
 
-gulp.task("package", ["clean", "concat-and-validate-js"]);
+gulp.task("package", ["clean", "compile-copy"]);
 
 
 gulp.task("concat-and-validate-js", ["clean"], function() {
@@ -32,8 +32,7 @@ gulp.task("concat-and-validate-js", ["clean"], function() {
                     .pipe(concat(destinationJSFileName))
                     .pipe(jshint('.jshintrc'))
                     .pipe(jshint.reporter('default'))
-                    .pipe(gulp.dest(BIN_DIR))
-                    .pipe(gulp.start("copy-res-and-bin"));
+                    .pipe(gulp.dest(BIN_DIR));
             }
             else
             {
@@ -45,14 +44,19 @@ gulp.task("concat-and-validate-js", ["clean"], function() {
 
 gulp.task("copy-res-and-bin", ["concat-and-validate-js"], function() {
 
-    return gulp.src(["res/**/*.*", "!res/**/*.js-builder", "bin/**/*.*"])
+    return gulp.src([RES_DIR + "/**/*.*", "!" + RES_DIR + "/**/*.js-builder", BIN_DIR + "/**/*.*"])
         .pipe(gulp.dest(TARGET_DIR));
 
 });
 
 
+gulp.task("compile-copy", ["concat-and-validate-js"], function() {
+    gulp.start("copy-res-and-bin");
+});
+
+
 
 gulp.task("clean", function() {
-    return gulp.src(['bin', 'target'], {read: false})
+    return gulp.src([BIN_DIR, TARGET_DIR], {read: false})
         .pipe(clean());
 });
