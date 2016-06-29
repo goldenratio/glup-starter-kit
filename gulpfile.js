@@ -3,16 +3,16 @@ var gulp = require("gulp"),
     es = require('event-stream'),
     concat = require("gulp-concat"),
     path = require('path'),
-    jshint = require('gulp-jshint');
+    jshint = require('gulp-jshint'),
+    sourcemaps = require('gulp-sourcemaps');
 
-const BIN_DIR = "bin";
 const TARGET_DIR = "target";
 const RES_DIR = "res";
 
 
 gulp.task("default", ["package"]);
 
-gulp.task("package", ["clean", "compile-copy"]);
+gulp.task("package", ["clean", "compile-and-copy"]);
 
 
 gulp.task("concat-and-validate-js", ["clean"], function() {
@@ -29,10 +29,12 @@ gulp.task("concat-and-validate-js", ["clean"], function() {
             if(sourceList)
             {
                 gulp.src(sourceList)
+                    .pipe(sourcemaps.init())
                     .pipe(concat(destinationJSFileName))
                     .pipe(jshint('.jshintrc'))
                     .pipe(jshint.reporter('default'))
-                    .pipe(gulp.dest(BIN_DIR));
+                    .pipe(sourcemaps.write("js/source-maps"))
+                    .pipe(gulp.dest(TARGET_DIR));
             }
             else
             {
@@ -42,21 +44,21 @@ gulp.task("concat-and-validate-js", ["clean"], function() {
 });
 
 
-gulp.task("copy-res-and-bin", ["concat-and-validate-js"], function() {
+gulp.task("copy-res", ["concat-and-validate-js"], function() {
 
-    return gulp.src([RES_DIR + "/**/*.*", "!" + RES_DIR + "/**/*.js-builder", BIN_DIR + "/**/*.*"])
+    return gulp.src([RES_DIR + "/**/*.*", "!" + RES_DIR + "/**/*.js-builder"])
         .pipe(gulp.dest(TARGET_DIR));
 
 });
 
 
-gulp.task("compile-copy", ["concat-and-validate-js"], function() {
-    gulp.start("copy-res-and-bin");
+gulp.task("compile-and-copy", ["concat-and-validate-js", "copy-res"], function() {
+
 });
 
 
 
 gulp.task("clean", function() {
-    return gulp.src([BIN_DIR, TARGET_DIR], {read: false})
+    return gulp.src([TARGET_DIR], {read: false})
         .pipe(clean());
 });
